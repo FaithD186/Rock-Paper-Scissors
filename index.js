@@ -20,19 +20,20 @@ function game(playerSelection){
     playRound(playerSelection, computerSelection); 
 }
 
-function updateScore(roundResult){
+function updateScore(roundResult, playerSelection, computerSelection){
+    computerSelection = computerSelection.toLowerCase();
     if (roundResult == "playerWin"){
         playerPoints ++; 
         player.textContent = playerPoints;
-        result.textContent = "You win this round!"
+        result.textContent = ("You win this round! You played " + playerSelection + " and computer played " + computerSelection + ".");
     }
     else if(roundResult == "computerWin"){
         computerPoints++; 
         computer.textContent = computerPoints; 
-        result.textContent = "You lose this round :("
+        result.textContent = ("You lose this round. You played " + playerSelection + " and computer played " + computerSelection + ".");
     }
     else{
-        result.textContent = "It's a tie."
+        result.textContent = ("It's a tie! You played " + playerSelection + " and computer played " + computerSelection + ".");
     }
 }
 
@@ -44,37 +45,37 @@ function computerPlay(){
 function playRound(playerSelection, computerSelection){
     if (playerSelection.toLowerCase() === computerSelection.toLowerCase()){
         console.log("It's a tie! Computer played " + computerSelection.toLowerCase() + "." + " You played " + playerSelection + ".");
-        updateScore("tie"); 
+        updateScore("tie", playerSelection, computerSelection); 
         return; 
     }
     if (playerSelection.toLowerCase()==="rock"){
         if (computerSelection === "Paper"){
             console.log("You lose this round! Computer played " + computerSelection.toLowerCase() + "." + " You played " + playerSelection + ".");
-            updateScore("computerWin"); 
+            updateScore("computerWin", playerSelection, computerSelection); 
         }
         else{
             console.log("You win this round! Computer played " + computerSelection.toLowerCase() + "." + " You played " + playerSelection + ".");
-            updateScore("playerWin");
+            updateScore("playerWin", playerSelection, computerSelection);
         }
     }
     if (playerSelection.toLowerCase() === "paper"){
         if (computerSelection === "Scissors"){
             console.log("You lose this round! Computer played " + computerSelection.toLowerCase() + "." + " You played " + playerSelection + ".");
-            updateScore("computerWin"); 
+            updateScore("computerWin", playerSelection, computerSelection); 
         }
         else{
             console.log("You win this round! Computer played " + computerSelection.toLowerCase() + "." + " You played " + playerSelection + ".");
-            updateScore("playerWin");
+            updateScore("playerWin", playerSelection, computerSelection);
         }
     }
     if (playerSelection.toLowerCase() === "scissors"){
         if (computerSelection === "Rock"){
             console.log("You lose this round! Computer played " + computerSelection.toLowerCase() + "." + " You played " + playerSelection + ".");
-            updateScore("computerWin"); 
+            updateScore("computerWin", playerSelection, computerSelection); 
         }
         else{
             console.log("You win this round! Computer played " + computerSelection.toLowerCase() + "." + " You played " + playerSelection + ".");
-            updateScore("playerWin");
+            updateScore("playerWin", playerSelection, computerSelection);
         }
     }
     if (checkWinner(playerPoints, computerPoints)){
